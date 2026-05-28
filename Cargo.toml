@@ -12,6 +12,11 @@ description = "Amplicon sequencing statistics from primer BED + BAM — Rust por
 name = "rsomics-bam-ampliconstats"
 path = "src/main.rs"
 
+
+[lib]
+name = "rsomics_bam_ampliconstats"
+path = "src/lib.rs"
+doctest = false
 [dependencies]
 rsomics-common = { version = "0.6" }
 rsomics-help = { version = "0.3" }
