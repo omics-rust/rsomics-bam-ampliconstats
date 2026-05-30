@@ -61,7 +61,7 @@ impl Default for AmpStatsArgs {
     }
 }
 
-/// Per-amplicon, per-sample statistics. Mirrors `astats_t`.
+/// Mirrors `astats_t`.
 pub struct AmpStats {
     pub nseq: i64,
     pub nfiltered: i64,
@@ -144,7 +144,6 @@ impl AmpStats {
     }
 }
 
-/// Per-reference state shared by both accumulation and output.
 pub struct RefData {
     pub ref_name: String,
     pub ref_len: i64,
@@ -155,7 +154,6 @@ pub struct RefData {
     pub first_amp_idx: usize,
 }
 
-/// Position-to-amplicon lookup tables.
 pub struct PosLookup {
     pub pos2start: Vec<i32>,
     pub pos2end: Vec<i32>,
@@ -211,7 +209,7 @@ impl PosLookup {
     }
 }
 
-/// Compute BAM alignment end position from CIGAR. Mirrors htslib `bam_endpos`.
+// mirrors htslib bam_endpos
 #[inline]
 fn bam_endpos(start: i64, cigar_ops: impl Iterator<Item = (u8, u32)>) -> i64 {
     let mut pos = start;
@@ -223,7 +221,6 @@ fn bam_endpos(start: i64, cigar_ops: impl Iterator<Item = (u8, u32)>) -> i64 {
     pos
 }
 
-/// Accumulate one record into local stats. Mirrors `accumulate_stats`.
 #[allow(clippy::too_many_arguments)]
 fn accumulate_record(
     flags: u16,
@@ -482,7 +479,6 @@ fn sample_name_from_path(path: &Path) -> String {
         .to_string()
 }
 
-/// Main entry point.
 pub fn run(
     args: &AmpStatsArgs,
     bed_path: &Path,

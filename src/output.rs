@@ -26,7 +26,6 @@ pub fn dump_stats(
 ) -> Result<()> {
     let t = type_char;
 
-    // ── SS: Summary statistics ───────────────────────────────────────────────
     writeln!(out, "# Summary stats.")?;
     writeln!(out, "# Use 'grep ^{t}SS | cut -f 2-' to extract this part.")?;
 
@@ -90,7 +89,6 @@ pub fn dump_stats(
         }
     }
 
-    // ── READS ────────────────────────────────────────────────────────────────
     writeln!(out, "# Absolute matching read counts per amplicon.")?;
     writeln!(
         out,
@@ -105,7 +103,6 @@ pub fn dump_stats(
     }
     writeln!(out)?;
 
-    // ── VDEPTH ───────────────────────────────────────────────────────────────
     write!(out, "{t}VDEPTH\t{name}")?;
     for slot in refs.iter().flatten() {
         let stats = if local { &slot.local } else { &slot.global };
@@ -144,7 +141,6 @@ pub fn dump_stats(
         writeln!(out)?;
     }
 
-    // ── RPERC ────────────────────────────────────────────────────────────────
     writeln!(out, "# Read percentage of distribution between amplicons.")?;
     writeln!(
         out,
@@ -198,7 +194,6 @@ pub fn dump_stats(
         writeln!(out)?;
     }
 
-    // ── DEPTH ────────────────────────────────────────────────────────────────
     writeln!(out, "# Read depth per amplicon.")?;
     writeln!(
         out,
@@ -249,7 +244,6 @@ pub fn dump_stats(
         writeln!(out)?;
     }
 
-    // ── PCOV (F only for per-file; C for combined) ───────────────────────────
     if type_char == 'F' {
         writeln!(out, "# Percentage coverage per amplicon")?;
         writeln!(
@@ -299,7 +293,6 @@ pub fn dump_stats(
         }
     }
 
-    // ── DP_ALL ───────────────────────────────────────────────────────────────
     writeln!(out, "# Depth per reference base for ALL data.")?;
     writeln!(
         out,
@@ -320,7 +313,6 @@ pub fn dump_stats(
         writeln!(out)?;
     }
 
-    // ── DP_VALID ─────────────────────────────────────────────────────────────
     writeln!(
         out,
         "# Depth per reference base for full-length valid amplicon data."
@@ -344,7 +336,6 @@ pub fn dump_stats(
         writeln!(out)?;
     }
 
-    // ── TCOORD ───────────────────────────────────────────────────────────────
     writeln!(out, "# Distribution of aligned template coordinates.")?;
     writeln!(
         out,
@@ -408,7 +399,6 @@ pub fn dump_stats(
         }
     }
 
-    // ── AMP ──────────────────────────────────────────────────────────────────
     writeln!(out, "# Classification of amplicon status.  Columns are")?;
     writeln!(
         out,
